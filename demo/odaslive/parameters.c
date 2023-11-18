@@ -1265,6 +1265,7 @@
         // +----------------------------------------------------------+
 
             nChannels = parameters_count(fileConfig, "general.mics");
+            printf("Number of Channels: %d", nChannels);
 
             cfg->mics = mics_construct_zero(nChannels);
 
@@ -1279,6 +1280,9 @@
                         tmpLabel = (char *) malloc(sizeof(char) * 1024);
                         sprintf(tmpLabel, "general.mics.[%u].mu.[%u]", iChannel, iSample);
                         cfg->mics->mu[iChannel * 3 + iSample] = parameters_lookup_float(fileConfig, tmpLabel);
+
+                        printf("Loaded Channel %d: Label: %s, mu (float): %f", iSample, tmpLabel, cfg->mics->mu[iChannel * 3 + iSample]);
+
                         free((void *) tmpLabel);
 
                     }
